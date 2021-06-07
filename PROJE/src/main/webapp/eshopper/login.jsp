@@ -108,15 +108,25 @@
 				
 					<div class="login-form"><!--login form-->
 						<h2>Login to your account</h2>
-						<form action="#">
-							<input type="text" placeholder="Name" />
-							<input type="email" placeholder="Email Address" />
-							<span>
-								<input type="checkbox" class="checkbox"> 
-								Keep me signed in
-							</span>
-							<button type="submit" class="btn btn-default">Login</button>
-						</form>
+						
+						
+						
+						 <form action="<%=request.getContextPath()%>/login" method="post">
+						   <div class="form-group">
+							    <label for="uname">User Name:</label> <input type="text"
+							     class="form-control" id="username" placeholder="User Name"
+							     name="username" required>
+						   </div>
+						   <div class="form-group">
+							    <label for="uname">Password:</label> <input type="password"
+							     class="form-control" id="password" placeholder="Password"
+							     name="password" required>
+						   </div>
+						   		<button type="submit" class="btn btn-primary">Submit</button>
+						  </form>
+						
+						
+						
 					</div><!--/login form-->
 				</div>
 				<div class="col-sm-1">
