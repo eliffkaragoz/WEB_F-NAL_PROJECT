@@ -178,13 +178,18 @@
 											<img src="images/home/product1.jpg" alt="" />
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<a href="/PROJE/Sepet1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												
+													<form action="/PROJE/Sepet1"> 
+                         							<input type="hidden" id="product" name="product" value="1">
+                         							<input type="submit" value="Add to cart">
+                         							</form>
+                         						
 											</div>
 										</div>
 								</div>
