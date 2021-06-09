@@ -187,6 +187,8 @@
 												
 													<form action="/PROJE/Sepet1"> 
                          							<input type="hidden" id="product" name="product" value="1">
+                         							<input type="hidden" id="price" name="price" value="56">
+                         							<input type="hidden" id="name" name="name" value="Easy Polo Black Edition">
                          							<input type="submit" value="Add to cart">
                          							</form>
                          						
