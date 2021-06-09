@@ -7,6 +7,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import Entity.User;
+
 
 /**
  * Java based configuration

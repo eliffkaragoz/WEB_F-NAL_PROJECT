@@ -1,6 +1,8 @@
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import Entity.User;
+
 
 public class UserDao {
 

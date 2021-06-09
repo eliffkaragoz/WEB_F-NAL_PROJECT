@@ -25,10 +25,6 @@ public class Sepet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -51,19 +47,18 @@ public class Sepet extends HttpServlet {
 						itemsid = c.getValue() + id;
 						response.addCookie(c); //cookie yi gönderiyoruz
 					}
+					
 					find = true; //istediğimiz cookieyi bulduğumuzu belirtiyoruz ki 51. satırdaki if yapısı çalışmasın.
 					break;
 				}
 			}
 		}
 		
-		
 		if(find == false) { 
 			Cookie cookie = new Cookie("items", "");
 			cookie.setMaxAge(60*60*24);
 			response.addCookie(cookie);
 		}
-		
 		
 		for(String i: itemsid.split("")) {
 			System.out.println(i);
@@ -76,9 +71,7 @@ public class Sepet extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
