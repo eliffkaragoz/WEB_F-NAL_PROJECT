@@ -13,8 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Connector.CartConnector;
+import Entity.Product;
 
-@WebServlet("/Sepet1")
+
+@WebServlet("/Sepet")
 public class Sepet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,45 +32,23 @@ public class Sepet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		
-		List<String> items = new ArrayList<>(); 
-		
-		String id = request.getParameter("product");
-		String itemsid = "";
-		boolean find = false;
+		System.out.println(request.getParameter("product") + " | " +
+						   request.getParameter("name") + " | " +
+						   request.getParameter("price") + " | " +
+						   request.getParameter("urunFotograf"));
 		
 		
-		Cookie[] cookies = request.getCookies(); //Tüm cookieleri alıyoruz
-		if(cookies != null) {
-			for(Cookie c: cookies) {
-				if((c.getName().equals("items")) == true) { //Alınan cookilerin içinden ismi formdan girilen isme eş olanı varsa alıyoruz
-					itemsid = c.getValue();
-					if(id != null) {
-						c.setValue(c.getValue() + id); //bir arttırıp yeni değeri yapıyoruz
-						itemsid = c.getValue() + id;
-						response.addCookie(c); //cookie yi gönderiyoruz
-					}
-					
-					find = true; //istediğimiz cookieyi bulduğumuzu belirtiyoruz ki 51. satırdaki if yapısı çalışmasın.
-					break;
-				}
-			}
-		}
+		Product product = new Product(Integer.parseInt(request.getParameter("product")),
+									  request.getParameter("name"),
+									  Integer.parseInt(request.getParameter("price")),
+									  request.getParameter("urunFotograf"));
 		
-		if(find == false) { 
-			Cookie cookie = new Cookie("items", "");
-			cookie.setMaxAge(60*60*24);
-			response.addCookie(cookie);
-		}
+		CartConnector cart = new CartConnector();
+		cart.Insert(product);
 		
-		for(String i: itemsid.split("")) {
-			System.out.println(i);
-			items.add(i);
-		}
-		
-		request.setAttribute("items", items);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("eshopper/cart.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("eshopper/cart.jsp");
+		/*RequestDispatcher dispatcher = request.getRequestDispatcher("eshopper/cart.jsp");
+		dispatcher.forward(request, response);*/
 		
 	}
 

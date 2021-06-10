@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import Entity.Cart;
 import Entity.Product;
 
 
-public class ProductConnector  {
+public class CartConnector  {
 
 	public String host = "localhost";
 	public int port = 3306;
@@ -23,7 +23,7 @@ public class ProductConnector  {
     public PreparedStatement ps=null;
     public Connection con=null;
     
-	public List<Product> readingData(int ProductID){
+	/*public List<Cart> readingData(int ProductID){
 	   	 
 	 	   try {
 	 		   String sorgu="SELECT * FROM product WHERE ProductID=?";
@@ -32,10 +32,10 @@ public class ProductConnector  {
 	            ps=con.prepareStatement(sorgu);
 	            ps.setInt(1,ProductID);
 	            ResultSet rs=ps.executeQuery();
-	            List<Product> liste=new ArrayList<>();
+	            List<Cart> liste=new ArrayList<>();
 	            while(rs.next())
 	            {
-	            	Product product =new Product(rs.getInt("ProductID"),rs.getString("ProductName"),rs.getInt("ProductPrice"),
+	            	Cart product =new Cart(rs.getInt("ProductID"),rs.getString("ProductName"),rs.getInt("ProductPrice"),
 	            			rs.getString("Image"));
 	            		
 	            	liste.add(product);
@@ -96,22 +96,22 @@ public class ProductConnector  {
 	            }
 	        }
 	 	   
-	     }
+	     }*/
 	
 	
-	public List<Product> readingData(){
+	public List<Cart> readingData(){
 	   	 
 	 	   try {
-	 		   String query="SELECT * FROM product";
+	 		   String query="SELECT * FROM cart";
 	 		   Class.forName("com.mysql.jdbc.Driver");
 	 		  con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT","root","1234");
 	            ps=con.prepareStatement(query);
 	            
 	            ResultSet rs=ps.executeQuery();
-	            List<Product> liste=new ArrayList<>();
+	            List<Cart> liste=new ArrayList<>();
 	            while(rs.next())
 	            {
-	            	Product product=new Product(rs.getInt("ProductID"),rs.getString("ProductName"),rs.getInt("ProductPrice"),
+	            	Cart product=new Cart(rs.getInt("ProductID"),rs.getString("ProductName"),rs.getInt("ProductPrice"),
 	            			rs.getString("Image"));
 	            	liste.add(product);
 	            }
@@ -143,7 +143,7 @@ public class ProductConnector  {
 	 	  
 				
 				try {
-					String sorgu="DELETE FROM product WHERE ProductID=?";
+					String sorgu="DELETE FROM cart WHERE ProductID=?";
 					Class.forName("com.mysql.jdbc.Driver");
 					 con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT","root","1234");
 					ps=con.prepareStatement(sorgu);	    
@@ -177,7 +177,7 @@ public class ProductConnector  {
 
 
 		
-			public void Update(Product product){
+			/*public void Update(Product product){
 			
 				try {
 					String sorgu="UPDATE product SET ProductName=?,ProductPrice=?,Image=? WHERE ProductID=?";
@@ -191,6 +191,7 @@ public class ProductConnector  {
 		            ps.setInt(4, product.getProductID());
 		            
 			        ps.executeUpdate();
+			       
 				   }
 			       
 			        catch(ClassNotFoundException | SQLException exception)
@@ -214,7 +215,45 @@ public class ProductConnector  {
 			            }
 			        }
 			       
-				}
+				}*/
+			
+			public void Insert(Product product) {
+				try {
+					String sorgu="INSERT INTO demo.cart (ProductID, ProductName, ProductPrice, Image) values (?, ?, ?, ?)";
+					Class.forName("com.mysql.jdbc.Driver");
+					 con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT","root","1234");
+					ps=con.prepareStatement(sorgu);	    
+			        
+					ps.setInt(1, product.getProductID());
+		            ps.setString(2, product.getProductName());
+		            ps.setInt(3, product.getProductPrice());
+		            ps.setString(4, product.getImage());
+		            
+			        ps.executeUpdate();
+			       
+				   }
+			       
+			        catch(ClassNotFoundException | SQLException exception)
+			        {
+			            System.out.println(exception);
+			         
+			        }
+			        finally 
+			        {
+			            try {
+			                if(con!=null){
+			                    con.close();
+			                }
+			                if(ps!=null){
+			                    ps.close();
+			                }
+			            }
+			            catch(SQLException sqlException)
+			            {
+			                System.out.println(sqlException);
+			            }
+			        }
+			}
 			
 			
 

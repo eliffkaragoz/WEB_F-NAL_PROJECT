@@ -2,7 +2,7 @@
 <%@ page import="java.io.*" %>
 <%@ page language="java" import="java.sql.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import ="Connector.ProductConnector,Entity.Product,java.util.*"%>
+<%@page import ="Connector.ProductConnector,Entity.Product,Connector.CartConnector,Entity.Cart,java.util.*"%>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -111,17 +111,20 @@
 													<img src=<%= urun.getImage() %>alt="" />
 													<h2>$<%= urun.getProductPrice() %></h2>
 													<p><%= urun.getProductName() %></p>
-													<a href="addCart.jsp" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="cart.jsp" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
 												<div class="product-overlay">
 													<div class="overlay-content">
 														<h2>$<%= urun.getProductPrice() %></h2>
 														<p><%= urun.getProductName() %></p>
-														<input type="hidden" id="product" name="product" value=<% urun.getProductID(); %>>
-														<input type="hidden" id="price" name="price" value=<% urun.getProductPrice(); %>>
-														<input type="hidden" id="name" name="name" value=<% urun.getProductName(); %>>
-														<input type="hidden" id="urunFotograf" name= "urunFotograf" value=<% urun.getImage(); %>>
-														<a href="Controller/Cart.java"  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+														<form action="/PROJE/Sepet">
+														<input type="hidden" id="product" name="product" value=<%= urun.getProductID() %>>
+														<input type="hidden" id="price" name="price" value=<%= urun.getProductPrice() %>>
+														<input type="hidden" id="name" name="name" value=<%= urun.getProductName() %>>
+														<input type="hidden" id="urunFotograf" name= "urunFotograf" value=<%= urun.getImage() %>>
+														<input type="submit" value="Submit">
+														</form>
+														<a href="/PROJE/Sepet" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 														</div>
 												</div>
 											</div>

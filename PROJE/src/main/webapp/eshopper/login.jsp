@@ -111,7 +111,7 @@
 						
 						
 						
-						 <form action="<%=request.getContextPath()%>/login" method="post">
+						 <form action="<%=request.getContextPath()%>/login1" method="post">
 						   <div class="form-group">
 							    <label for="uname">User Name:</label> <input type="text"
 							     class="form-control" id="username" placeholder="User Name"

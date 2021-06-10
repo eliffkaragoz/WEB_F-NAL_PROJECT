@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * @email Ramesh Fadatare
  */
 
-@WebServlet("/login")
+@WebServlet("/login1")
 public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDao loginDao;

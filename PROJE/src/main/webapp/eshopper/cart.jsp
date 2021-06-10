@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.io.*" %>
+<%@ page language="java" import="java.sql.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import ="Connector.CartConnector,Entity.Cart,java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,7 +131,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="item" items="${items}">
+						<%
+						CartConnector data=new CartConnector();
+						List<Cart> urunler=data.readingData();
+						for(Cart urun:urunler){
+    					%>
 							<tr>
 							<td class="cart_product">
 									<a href=""><img src="images/cart/one.png" alt=""></a>
@@ -154,7 +161,10 @@
 									<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
 							</td>
 							</tr>
-						</c:forEach>
+						<% 
+				 			}
+			
+			   			%> 
 					</tbody>
 				</table>
 			</div>
